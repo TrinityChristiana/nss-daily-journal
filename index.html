@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<!-- Your first step is to build a form component in HTML through which you will enter your daily journal entries. It should contain the following fields.
+    <section class="journal">
+        <form action="" class="journal-form">
+            <section>
+            <label for="entry-date">Date of Entry</label>
+            <input type="date" name="entry-date" id="entry-date">
+        </section>
 
-Date field. Input elements in HTML can be of type date which will automatically render a calendar control for you to use.
-Concepts covered. A short input field of type text where you enter in what concept(s) were covered and are driving the journal entry.
-Journal entry. This is a textarea field where you can enter in as much text about what you learned, how you felt, and plans for the upcoming days.
-Mood. This should be a select element with as many option child elements as you would like to describe your mood for the day. You can start with the simply happy, fine, and sad values, or pick your own scaling system.
-After you have completed the form, place a button element beneath it labeled Record Journal Entry, or any other text that you would like. -->
+        <section>
+            <label for="concept-text">Concepts Covered</label>
+            <input type="text" name="concept-text" id="concept-text">
+        </section>
 
-<form action="">
-    <input type="date" name="entry-date" id="entry-date">
-</form>
+        <section>
+            <label for="journal-entry"></label>
+            <textarea name="journal-entry" id="journal-entry" cols="30" rows="10">Type out journal entry here</textarea>
+        </section>
 
+        <section>
+            <label for="mood-select">Select your mood</label>
+            <select name="mood-select" id="mood-select">
+                <option value="happy">Happy</option>
+                <option value="fine">Fine</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+            </select>
+        </section>
+
+            <button type="submit">Record Journal Entry</button>
+        </form>
+    </section>
 </body>
+
 </html>
