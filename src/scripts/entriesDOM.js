@@ -7,6 +7,7 @@
     Arguments: entries (array of objects)
 */
 const renderJournalEntries = (entries) => {
+    console.log(entries);
     // creates variable to hold first instance of an element with entryLog as a class
     const journalArticles = document.querySelector(".entryLog");
     
