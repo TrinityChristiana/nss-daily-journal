@@ -1,32 +1,32 @@
 {
-    "journalEntries": [
-        {
-            "id": 1,
-            "date": "07/24/2018",
-            "concept": "Array methods",
-            "entry": "We learned about 4 different array methods today. forEach made sense, but the others still confuse me.",
-            "mood": "Ok"
-        },
-        {
-            "id": 2,
-            "date": "08/24/2018",
-            "concept": "Arrays with objects",
-            "entry": "We learned about 4 different obj methods today. forEach made sense, but the others still confuse me.",
-            "mood": "Ok"
-        },
-        {
-            "id": 3,
-            "date": "09/24/2018",
-            "concept": "Object methods",
-            "entry": "We learned about 4 different array different today. forEach made sense, but the others still confuse me.",
-            "mood": "Ok"
-        },
-        {
-            "id": 4,
-            "date": "01/17/2020",
-            "concept": "Object methods",
-            "entry": "We learned about 4 different array different today. forEach made sense, but the others still confuse me.",
-            "mood": "Ok"
-        }
-    ]
+  "journalEntries": [
+    {
+      "id": 1,
+      "date": "07/24/2018",
+      "concept": "Array methods",
+      "entry": "We learned about 4 different array methods today. forEach made sense, but the others still confuse me.",
+      "mood": "Ok"
+    },
+    {
+      "id": 2,
+      "date": "08/24/2018",
+      "concept": "Arrays with objects",
+      "entry": "We learned about 4 different obj methods today. forEach made sense, but the others still confuse me.",
+      "mood": "Ok"
+    },
+    {
+      "id": 3,
+      "date": "09/24/2018",
+      "concept": "Object methods",
+      "entry": "We learned about 4 different array different today. forEach made sense, but the others still confuse me.",
+      "mood": "Ok"
+    },
+    {
+      "id": 4,
+      "date": "01/17/2020",
+      "concept": "Object methods",
+      "entry": "We learned about 4 different array different today. forEach made sense, but the others still confuse me.",
+      "mood": "Ok"
+    }
+  ]
 }

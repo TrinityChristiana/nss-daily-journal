@@ -19,18 +19,19 @@
 
             <section>
                 <label for="concept-text">Concepts Covered</label>
-                <input type="text" name="concept-text" id="concept-text">
+                <input type="text" name="concept-text" id="concept-text" value="">
             </section>
 
             <section>
-                <label for="journal-entry"></label>
+                <label for="journal-entry">Journal Entry</label>
                 <textarea name="journal-entry" id="journal-entry" cols="30"
-                    rows="10">Type out journal entry here</textarea>
+                    rows="10"></textarea>
             </section>
 
             <section>
                 <label for="mood-select">Select your mood</label>
                 <select name="mood-select" id="mood-select">
+                    <option value="">--Select Mood--</option>
                     <option value="happy">Happy</option>
                     <option value="fine">Fine</option>
                     <option value="sad">Sad</option>
@@ -38,7 +39,7 @@
                 </select>
             </section>
 
-            <button type="submit">Record Journal Entry</button>
+            <button id="submitEntry" type="submit">Record Journal Entry</button>
         </form>
     </section>
     <article class="entryLog">
