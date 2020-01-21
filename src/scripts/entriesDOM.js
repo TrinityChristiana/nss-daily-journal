@@ -6,13 +6,16 @@
 
     Arguments: entries (array of objects)
 */
-const renderJournalEntries = (entries) => {
-    console.log(entries);
-    // creates variable to hold first instance of an element with entryLog as a class
-    const journalArticles = document.querySelector(".entryLog");
-    
-    // Appends each html text to the selected variable above.
-    entries.forEach(element => {
-        journalArticles.appendChild(element);
-    });
-};
+
+const entriesDOM = {
+    renderJournalEntries (entries) {
+        // creates variable to hold first instance of an element with entryLog as a class
+        const journalArticles = document.querySelector(".entryLog");
+        
+        // Appends each html text to the selected variable above.
+        entries.forEach(element => {
+            journalArticles.appendChild(element);
+        });
+    }
+}
+

@@ -5,36 +5,39 @@
 
     Arguments: journalEntry (object)
 */
-const makeJournalEntryComponent = (journalEntry) => {
-    // creates section element to hold journal entries
-    let section = document.createElement('section');
 
-    // created h2 element for the concept
-    let concept = document.createElement('h2');
-    // Added concept from json file to created element
-    concept.textContent = `${journalEntry.concept}`;
+const entryComponent = {
+    makeJournalEntryComponent (journalEntry) {
+        // creates section element to hold journal entries
+        let section = document.createElement('section');
 
-    // creates h3 element for the date
-    let date = document.createElement('h3');
-    // Added date from json file to created element
-    date.textContent = `${journalEntry.date}`;
+        // created h2 element for the concept
+        let concept = document.createElement('h2');
+        // Added concept from json file to created element
+        concept.textContent = `${journalEntry.concept}`;
 
-    // creates p elementfor the journal entry
-    let entry = document.createElement('p');
-    // Added entry from json file to created element
-    entry.textContent = `${journalEntry.entry}`;
+        // creates h3 element for the date
+        let date = document.createElement('h3');
+        // Added date from json file to created element
+        date.textContent = `${journalEntry.date}`;
 
-    // creates p element for mood
-    let mood = document.createElement('p');
-    // Added mood from json file to created element
-    mood.textContent = `${journalEntry.mood}`;
+        // creates p elementfor the journal entry
+        let entry = document.createElement('p');
+        // Added entry from json file to created element
+        entry.textContent = `${journalEntry.entry}`;
 
-    // Adds all elements and the text created above to the section element
-    section.appendChild(concept);
-    section.appendChild(date);
-    section.appendChild(entry);
-    section.appendChild(mood);
+        // creates p element for mood
+        let mood = document.createElement('p');
+        // Added mood from json file to created element
+        mood.textContent = `${journalEntry.mood}`;
 
-    // Returns new created section and the children of the element
-    return section;
+        // Adds all elements and the text created above to the section element
+        section.appendChild(concept);
+        section.appendChild(date);
+        section.appendChild(entry);
+        section.appendChild(mood);
+
+        // Returns new created section and the children of the element
+        return section;
+    }
 };

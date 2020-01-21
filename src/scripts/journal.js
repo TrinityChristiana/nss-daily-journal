@@ -21,9 +21,9 @@
 API.getJournalEntries().then(function(entries) {
     let component = [];
     entries.forEach(entry => {
-        component.push(makeJournalEntryComponent(entry));
+        component.push(entryComponent.makeJournalEntryComponent(entry));
     });
     
-    renderJournalEntries(component);
+    entriesDOM.renderJournalEntries(component);
     // console.log(result);
 });
