@@ -19,3 +19,4 @@ const entriesDOM = {
     }
 }
 
+export default entriesDOM;

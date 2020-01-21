@@ -41,3 +41,5 @@ const entryComponent = {
         return section;
     }
 };
+
+export default entryComponent;
