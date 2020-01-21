@@ -8,4 +8,8 @@ This assignment is practice for NSS's course work.
 Preview Assignment: https://trinity-daily-journal.netlify.com/
 ***
 
-This project is a culminating of everything I learned/am learning at Nashville Software School during the three months of front-end. 
+Make sure to have json-server downloaded. And run following command to run the json-server after downoading.
+
+```
+json-server -p 8088 -w api/entries.json
+```
