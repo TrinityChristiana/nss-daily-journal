@@ -5,7 +5,10 @@
     Change the fake variable names below to what they should be
     to get the data and display it.
 */
-import entryComponent from "./entryComponent.js"
+import entryComponent from "./entryComponent.js";
+import entriesDOM from './entriesDOM.js';
+import API from './data.js';
+
 API.getJournalEntries().then(function(entries) {
     let component = [];
     entries.forEach(entry => {
