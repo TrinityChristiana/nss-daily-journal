@@ -1,11 +1,5 @@
-/*
-    Main application logic that uses the functions and objects
-    defined in the other JavaScript files.
-
-    Change the fake variable names below to what they should be
-    to get the data and display it.
-*/
-import entryComponent from "./entryComponent.js";
+// Main Js File
+import convertEntryData from "./convertEntryData.js";
 import entriesDOM from './entriesDOM.js';
 import API from './data.js';
 import collectInput from './collectInput.js';
@@ -16,20 +10,26 @@ const renderDOM = () => {
     API.getJournalEntries().then((entries) => {
         let component = [];
         entries.forEach(entry => {
-            let section = entryComponent.makeJournalEntryComponent(entry);
-            // document.getElementById("");
-            // let deleteButton = 
-            section.addEventListener("click", (e) => {
-                deleteEntry(e.currentTarget.id);
+            let section = convertEntryData.makeJournalEntryComponent(entry);
+            let deleteButton = section.querySelector(".deleteButton");
+            let editButton = section.querySelector(".editButton");
+
+            deleteButton.addEventListener("click", (e) => {
+
+                deleteEntry(e.target.parentElement.id);
+            });
+
+            editButton.addEventListener("click", (e) => {
+                // Shows entry values in form to edit
+                entriesDOM.renderEntryInput(e);
+                entriesDOM.showEditEntryButton();
+                editClicked(e.target.parentElement.id);
             });
             component.push(section);
-
         });
-
         entriesDOM.renderJournalEntries(component);
     });
 };
-
 renderDOM();
 
 const deleteEntry = (id) => {
@@ -37,59 +37,41 @@ const deleteEntry = (id) => {
         .then(() => renderDOM());
 };
 
-// const createFormChecker = (formElement) => {
-//     let boolean = !(/\S/.test(formElement.value));
-//     let value = formElement.value;
-//     return {
-//         boolean: boolean,
-//         value: value
-//     };
-// };
+const editJournalEntry = (id) => {
 
-const createEntryObject = (inputArray) => {
-    console.log(inputArray);
-    return {
-        date: inputArray[0].value,
-        concept: inputArray[1].value,
-        entry: inputArray[2].value,
-        mood: inputArray[3].value
-    };
-};
+    API.editJournalEntry(id)
 
+        .then(() => renderDOM());
+}
 
 // Listen for Submit Button Click
 document.getElementById("submitEntry").addEventListener("click", (e) => {
     e.preventDefault();
     const inputArray = [];
 
-    // collect form values
+    // collect form values in an Obj
     const dateObj = collectInput.getInputValues("#entry-date", "date");
-    inputArray.push(dateObj);
-
     const conceptObj = collectInput.getInputValues("#concept-text", "concept");
-    inputArray.push(conceptObj);
-
     const entryObj = collectInput.getInputValues("#journal-entry", "entry");
-    inputArray.push(entryObj);
-
     const moodObj = collectInput.getInputValues("#mood-select", "mood");
+
+    // Pushes obj to array
+    inputArray.push(dateObj);
+    inputArray.push(conceptObj);
+    inputArray.push(entryObj);
     inputArray.push(moodObj);
 
-    const checkForm = validate.createFormChecker(inputArray);   
-    
+    // checks form to see if any fields are empty or filled with spaces
+    const checkForm = validate.createFormChecker(inputArray);
+    // pulls out boolean values of checkForm for conditional
     const formHasSpaces = checkForm[1];
     const formIsEmpty = checkForm[2];
-
-    // console.log(dateObj, conceptObj, entryObj, moodObj);
-    
 
     if (formHasSpaces) {
         alert("Please enter in all information");
         e.preventDefault();
     } else if (!formIsEmpty) {
-        const newJournalEntry = createEntryObject(inputArray);
-        console.log(newJournalEntry);
-        // Use `fetch` with the POST method to add your entry to your API
+        const newJournalEntry = convertEntryData.createEntryObject(inputArray);
 
         e.preventDefault();
 
@@ -98,9 +80,31 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
             .then(() => {
                 renderDOM();
             });
+
         inputArray[0].selector.focus();
-
     }
-
-    
+    const form = document.querySelector('#journal-form').reset();
 });
+
+const editClicked = (id) => {
+    document.getElementById("editEntry").addEventListener("click", (e) => {
+        e.preventDefault();
+        entriesDOM.showSubmitEntryButton()
+        let date = document.querySelector("#entry-date").value;
+        let concept = document.querySelector("#concept-text").value;
+        let entry = document.querySelector("#journal-entry").value;
+        let mood = document.querySelector("#mood-select").value;
+
+        API.editJournalEntry(id, {
+                "date": `${date}`,
+                "concept": `${concept}`,
+                "entry": `${entry}`,
+                "mood": `${mood}`,
+            })
+            .then(() => {
+                renderDOM(); 
+                const form = document.querySelector('#journal-form').reset();
+            });
+            
+    });
+};
