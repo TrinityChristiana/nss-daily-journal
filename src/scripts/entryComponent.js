@@ -5,11 +5,15 @@
 
     Arguments: journalEntry (object)
 */
+import API from './data.js';
 
 const entryComponent = {
     makeJournalEntryComponent (journalEntry) {
+        
         // creates section element to hold journal entries
         let section = document.createElement('section');
+        section.setAttribute("id", `${journalEntry.id}`);
+        
 
         // created h2 element for the concept
         let concept = document.createElement('h2');
@@ -38,6 +42,8 @@ const entryComponent = {
         section.appendChild(mood);
 
         // Returns new created section and the children of the element
+        // console.log(section);
+        
         return section;
     }
 };

@@ -9,15 +9,30 @@ import entryComponent from "./entryComponent.js";
 import entriesDOM from './entriesDOM.js';
 import API from './data.js';
 
-API.getJournalEntries().then(function (entries) {
-    let component = [];
-    entries.forEach(entry => {
-        component.push(entryComponent.makeJournalEntryComponent(entry));
-    });
+const renderDOM = () => {
+    document.querySelector(".entryLog").innerHTML = "";
+    API.getJournalEntries().then((entries) => {
+        let component = [];
+        entries.forEach(entry => {
+            let section = entryComponent.makeJournalEntryComponent(entry);
+            section.addEventListener("click", (e) => {
+                deleteEntry(e.currentTarget.id);
+            });
+            component.push(section);
 
-    entriesDOM.renderJournalEntries(component);
-    // console.log(result);
-});
+        });
+
+        entriesDOM.renderJournalEntries(component);
+        console.log(component);
+    });
+};
+
+renderDOM();
+
+const deleteEntry = (id) => {
+    API.deleteJournalEntry(id)
+        .then(() => renderDOM());
+}
 
 const createFormChecker = (formElement) => {
     let boolean = !(/\S/.test(formElement.value));
@@ -75,15 +90,16 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
         const newJournalEntry = createEntryObject(dateValue, conceptValue, entryValue, moodValue);
 
         // Use `fetch` with the POST method to add your entry to your API
-        fetch("http://localhost:8088/journalEntries", { // Replace "url" with your API's URL
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newJournalEntry)
-        });
-        date.focus();
+
         e.preventDefault();
+
+        API.saveJournalEntry(newJournalEntry) /* post */
+            /* .then(get) */
+            .then(() => {
+                renderDOM();
+            });
+        date.focus();
+
     }
 
     e.preventDefault();

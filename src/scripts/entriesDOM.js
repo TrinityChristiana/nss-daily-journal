@@ -17,6 +17,6 @@ const entriesDOM = {
             journalArticles.appendChild(element);
         });
     }
-}
+};
 
 export default entriesDOM;

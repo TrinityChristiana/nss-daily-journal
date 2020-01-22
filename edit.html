@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <section class="journal">
+        <form action="" class="journal-form">
+            <section>
+                <label for="entry-date">Date of Entry</label>
+                <input type="date" name="entry-date" id="entry-date">
+            </section>
+
+            <section>
+                <label for="concept-text">Concepts Covered</label>
+                <input type="text" name="concept-text" id="concept-text" value="">
+            </section>
+
+            <section>
+                <label for="journal-entry">Journal Entry</label>
+                <textarea name="journal-entry" id="journal-entry" cols="30"
+                    rows="10"></textarea>
+            </section>
+
+            <section>
+                <label for="mood-select">Select your mood</label>
+                <select name="mood-select" id="mood-select">
+                    <option value="">--Select Mood--</option>
+                    <option value="happy">Happy</option>
+                    <option value="fine">Fine</option>
+                    <option value="sad">Sad</option>
+                    <option value="angry">Angry</option>
+                </select>
+            </section>
+
+            <button id="editEntry" type="submit">Edit Journal Entry</button>
+        </form>
+    </section>
+    <article class="entryLog">
+
+    </article>
+
+    <script type="module" src="./src/scripts/edit.js"></script>
+</body>
+
+</html>
