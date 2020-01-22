@@ -14,7 +14,9 @@ const renderDOM = () => {
     API.getJournalEntries().then((entries) => {
         let component = [];
         entries.forEach(entry => {
-            let section = entryComponent.makeJournalEntryComponent(entry);
+            // let section = entryComponent.makeJournalEntryComponent(entry);
+            document.getElementById("");
+            let deleteButton = 
             section.addEventListener("click", (e) => {
                 deleteEntry(e.currentTarget.id);
             });
@@ -23,7 +25,6 @@ const renderDOM = () => {
         });
 
         entriesDOM.renderJournalEntries(component);
-        console.log(component);
     });
 };
 

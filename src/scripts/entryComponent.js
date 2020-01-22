@@ -5,8 +5,6 @@
 
     Arguments: journalEntry (object)
 */
-import API from './data.js';
-
 const entryComponent = {
     makeJournalEntryComponent (journalEntry) {
         
@@ -35,11 +33,21 @@ const entryComponent = {
         // Added mood from json file to created element
         mood.textContent = `${journalEntry.mood}`;
 
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = `Delete Entry`;
+        deleteButton.setAttribute("id", `${journalEntry.id}`);
+
+        let editButton = document.createElement('button');
+        editButton.textContent = `Edit Entry`;
+        editButton.setAttribute("id", "editButton", `${journalEntry.id}`, );
+
         // Adds all elements and the text created above to the section element
         section.appendChild(concept);
         section.appendChild(date);
         section.appendChild(entry);
         section.appendChild(mood);
+        section.appendChild(deleteButton);
+        section.appendChild(editButton);
 
         // Returns new created section and the children of the element
         // console.log(section);

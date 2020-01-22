@@ -1,15 +1,32 @@
 {
   "journalEntries": [
     {
-      "date": "2020-01-08",
+      "date": "2020-01-11",
+      "concept": "asdsa",
+      "entry": "asda",
+      "mood": "fine",
       "id": 1
     },
     {
-      "date": "2020-02-01",
-      "concept": "Entry 3",
-      "entry": "entryLog",
-      "mood": "happy",
+      "date": "2020-01-11",
+      "concept": "asdsa",
+      "entry": "asda",
+      "mood": "fine",
+      "id": 2
+    },
+    {
+      "date": "2020-01-11",
+      "concept": "asdsa",
+      "entry": "asda",
+      "mood": "fine",
       "id": 3
+    },
+    {
+      "date": "2020-01-10",
+      "concept": "sdsa",
+      "entry": "asda",
+      "mood": "fine",
+      "id": 4
     }
   ]
 }
