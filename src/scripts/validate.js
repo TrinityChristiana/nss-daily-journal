@@ -16,6 +16,7 @@ const validate = {
         // return checkForm;
 
         let formHasSpaces = checkForm.some(element => element.boolean === true);
+        // console.log(formHasSpaces);
         let formIsEmpty = checkForm.some(element => element.value === "");
 
         return [formHasSpaces, formIsEmpty];

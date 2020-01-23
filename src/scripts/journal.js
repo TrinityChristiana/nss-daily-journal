@@ -13,7 +13,7 @@ const renderDOM = () => {
             let section = convertEntryData.makeJournalEntryComponent(entry);
             let deleteButton = section.querySelector(".deleteButton");
             let editButton = section.querySelector(".editButton");
-
+            component.push(section);
             deleteButton.addEventListener("click", (e) => {
 
                 deleteEntry(e.target.parentElement.id);
@@ -25,7 +25,7 @@ const renderDOM = () => {
                 entriesDOM.showEditEntryButton();
                 editClicked(e.target.parentElement.id);
             });
-            component.push(section);
+
         });
         entriesDOM.renderJournalEntries(component);
     });
@@ -44,9 +44,7 @@ const editJournalEntry = (id) => {
         .then(() => renderDOM());
 }
 
-// Listen for Submit Button Click
-document.getElementById("submitEntry").addEventListener("click", (e) => {
-    e.preventDefault();
+const createCheckBooleans = () => {
     const inputArray = [];
 
     // collect form values in an Obj
@@ -62,11 +60,20 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
     inputArray.push(moodObj);
 
     // checks form to see if any fields are empty or filled with spaces
-    const checkForm = validate.createFormChecker(inputArray);
+
+    return inputArray;
     // pulls out boolean values of checkForm for conditional
+
+}
+
+// Listen for Submit Button Click
+document.getElementById("submitEntry").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const inputArray = createCheckBooleans();
+    const checkForm = validate.createFormChecker(inputArray);
     const formHasSpaces = checkForm[1];
     const formIsEmpty = checkForm[2];
-
     if (formHasSpaces) {
         alert("Please enter in all information");
         e.preventDefault();
@@ -82,29 +89,42 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
             });
 
         inputArray[0].selector.focus();
+        document.querySelector('#journal-form').reset();
     }
-    const form = document.querySelector('#journal-form').reset();
+
 });
 
 const editClicked = (id) => {
     document.getElementById("editEntry").addEventListener("click", (e) => {
         e.preventDefault();
-        entriesDOM.showSubmitEntryButton()
+
+        const inputArray = createCheckBooleans();
+        const checkForm = validate.createFormChecker(inputArray);
+        const formHasSpaces = checkForm[1];
+        const formIsEmpty = checkForm[2];
+        console.log(formHasSpaces);
+        console.log(formIsEmpty);
+
         let date = document.querySelector("#entry-date").value;
         let concept = document.querySelector("#concept-text").value;
         let entry = document.querySelector("#journal-entry").value;
         let mood = document.querySelector("#mood-select").value;
 
-        API.editJournalEntry(id, {
-                "date": `${date}`,
-                "concept": `${concept}`,
-                "entry": `${entry}`,
-                "mood": `${mood}`,
-            })
-            .then(() => {
-                renderDOM(); 
-                const form = document.querySelector('#journal-form').reset();
-            });
-            
+        if (formHasSpaces) {
+            alert("Please enter in all information");
+            e.preventDefault();
+        } else if (!formIsEmpty) {
+            entriesDOM.showSubmitEntryButton();
+            API.editJournalEntry(id, {
+                    "date": `${date}`,
+                    "concept": `${concept}`,
+                    "entry": `${entry}`,
+                    "mood": `${mood}`,
+                })
+                .then(() => {
+                    renderDOM();
+                    document.querySelector('#journal-form').reset();
+                });
+        }
     });
 };
