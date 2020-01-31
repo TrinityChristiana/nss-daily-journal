@@ -54,7 +54,6 @@ const convertInputData = {
         return section;
     },
     createEntryObject(inputArray) {
-        console.log(inputArray);
         return {
             date: inputArray[0].value,
             concept: inputArray[1].value,
