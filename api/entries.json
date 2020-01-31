@@ -1,22 +1,8 @@
 {
   "journalEntries": [
     {
-      "date": "2020-01-03",
-      "concept": "qwe",
-      "entry": "werew",
-      "mood": "fine",
-      "id": 12
-    },
-    {
-      "date": "2020-01-10",
-      "concept": "adfas",
-      "entry": "asdas",
-      "mood": "sad",
-      "id": 13
-    },
-    {
       "date": "2020-01-04",
-      "concept": "asdas",
+      "concept": "number 14",
       "entry": "asdas",
       "mood": "angry",
       "id": 14
