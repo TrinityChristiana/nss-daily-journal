@@ -11,7 +11,6 @@ const entriesDOM = {
     renderJournalEntries(entries) {
         // creates variable to hold first instance of an element with entryLog as a class
         const journalArticles = document.querySelector(".entryLog");
-        console.log(entries);
         // Appends each html text to the selected variable above.
         entries.forEach(element => {
             journalArticles.appendChild(element);
