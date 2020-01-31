@@ -8,6 +8,11 @@ const collectInput = {
             selector: selector,
             value: value
         };
+    },
+    getFilterValues(id) {
+        let filter = document.getElementById(id).value();
+        console.log(filter);
+        return filter;
     }
 
 }

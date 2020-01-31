@@ -24,8 +24,7 @@
 
             <section>
                 <label for="journal-entry">Journal Entry</label>
-                <textarea name="journal-entry" id="journal-entry" cols="30"
-                    rows="10"></textarea>
+                <textarea name="journal-entry" id="journal-entry" cols="30" rows="10"></textarea>
             </section>
 
             <section>
@@ -41,6 +40,35 @@
 
             <button id="submitEntry" type="submit">Record Journal Entry</button>
             <button id="editEntry" type="submit" class="toggle-button">Edit Journal Entry</button>
+        </form>
+    </section>
+    <section id="filter">
+        <form action="" name="mood-filter-form">
+            <section id="mood-filter-form">
+                <legend>Filter Entries by Mood</legend>
+                <div>
+                    <input type="radio" name="filter-mood" id="filter-happy" value="happy">
+                    <label for="filter-happy">Happy</label>
+                </div>
+
+                <div>
+                    <input type="radio" name="filter-mood" id="filter-fine" value="fine">
+                    <label for="filter-fine">Fine</label>
+                </div>
+
+                <div>
+                    <input type="radio" name="filter-mood" id="filter-sad" value="sad">
+                    <label for="filter-sad">Sad</label>
+                </div>
+
+                <div>
+                    <input type="radio" name="filter-mood" id="filter-angry" value="angry">
+                    <label for="filter-angry">Angry</label>
+                </div>
+
+
+
+            </section>
         </form>
     </section>
     <article class="entryLog">

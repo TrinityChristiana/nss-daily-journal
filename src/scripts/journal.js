@@ -5,44 +5,64 @@ import API from './data.js';
 import collectInput from './collectInput.js';
 import validate from './validate.js'
 
-const renderDOM = () => {
-    document.querySelector(".entryLog").innerHTML = "";
-    API.getJournalEntries().then((entries) => {
-        let component = [];
-        entries.forEach(entry => {
-            let section = convertEntryData.makeJournalEntryComponent(entry);
-            let deleteButton = section.querySelector(".deleteButton");
-            let editButton = section.querySelector(".editButton");
-            component.push(section);
-            deleteButton.addEventListener("click", (e) => {
+const backUpdateArray = [];
+let entries = JSON.parse(localStorage.getItem(`entry-data`));
 
-                deleteEntry(e.target.parentElement.id);
+const renderDOM = (hasUpdated) => {
+    if (hasUpdated || entries == null) {
+        API.getJournalEntries()
+            .then(data => {
+                console.log(data);
+                let dataArray = [];
+                let i = 0;
+
+                i++;
+                localStorage.setItem(`entry-data`, JSON.stringify(data));
+
+                entries = JSON.parse(localStorage.getItem(`entry-data`));
+                composeDOM(entries);
             });
+    }
+    entries = JSON.parse(localStorage.getItem(`entry-data`));
+    composeDOM(entries);
 
-            editButton.addEventListener("click", (e) => {
-                // Shows entry values in form to edit
-                entriesDOM.renderEntryInput(e);
-                entriesDOM.showEditEntryButton();
-                editClicked(e.target.parentElement.id);
-            });
-
-        });
-        entriesDOM.renderJournalEntries(component);
-    });
 };
-renderDOM();
+const composeDOM = (entries) => {
+    document.querySelector(".entryLog").innerHTML = "";
+
+    let component = [];
+    entries.forEach(entry => {
+        let section = convertEntryData.makeJournalEntryComponent(entry);
+        let deleteButton = section.querySelector(".deleteButton");
+        let editButton = section.querySelector(".editButton");
+        component.push(section);
+        deleteButton.addEventListener("click", (e) => {
+
+            deleteEntry(e.target.parentElement.id);
+        });
+
+        editButton.addEventListener("click", (e) => {
+            // Shows entry values in form to edit
+            entriesDOM.renderEntryInput(e);
+            entriesDOM.showEditEntryButton();
+            editClicked(e.target.parentElement.id);
+        });
+
+    });
+    entriesDOM.renderJournalEntries(component);
+
+};
+
+renderDOM(false);
 
 const deleteEntry = (id) => {
     API.deleteJournalEntry(id)
-        .then(() => renderDOM());
+        .then(() => renderDOM(true))
+        .catch(error => {
+            console.log(error);
+            alert("Entries cannot be deleted at this time");
+        });
 };
-
-const editJournalEntry = (id) => {
-
-    API.editJournalEntry(id)
-
-        .then(() => renderDOM());
-}
 
 const createCheckBooleans = () => {
     const inputArray = [];
@@ -84,15 +104,30 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
 
         API.saveJournalEntry(newJournalEntry) /* post */
             /* .then(get) */
-            .then(() => {
-                renderDOM();
-            });
+            .then(() => renderDOM(true))
 
         inputArray[0].selector.focus();
         document.querySelector('#journal-form').reset();
     }
 
 });
+
+const backUpData = (id, editedEntryObj) => {
+    localStorage.removeItem(`backupData`);
+    let backUp = JSON.parse(localStorage.getItem(`backupData`));
+    if (backUp == null) {
+        // console.log("null");
+        console.log(entries);
+        backUpdateArray.push(entries);
+    }
+    console.log(editedEntryObj);
+    backUpdateArray.push(editedEntryObj);
+
+    
+    console.log(backUpdateArray);
+    localStorage.setItem(`backupData`, JSON.stringify(backUpdateArray));
+    console.log("tihis");
+}
 
 const editClicked = (id) => {
     document.getElementById("editEntry").addEventListener("click", (e) => {
@@ -102,29 +137,49 @@ const editClicked = (id) => {
         const checkForm = validate.createFormChecker(inputArray);
         const formHasSpaces = checkForm[1];
         const formIsEmpty = checkForm[2];
-        console.log(formHasSpaces);
-        console.log(formIsEmpty);
 
         let date = document.querySelector("#entry-date").value;
         let concept = document.querySelector("#concept-text").value;
-        let entry = document.querySelector("#journal-entry").value;
+        let entry = document.querySelector("#journal-entry").value.trim();
         let mood = document.querySelector("#mood-select").value;
 
-        if (formHasSpaces) {
+        if (formHasSpaces /* || entry.value == undefined */ ) {
             alert("Please enter in all information");
             e.preventDefault();
         } else if (!formIsEmpty) {
             entriesDOM.showSubmitEntryButton();
-            API.editJournalEntry(id, {
-                    "date": `${date}`,
-                    "concept": `${concept}`,
-                    "entry": `${entry}`,
-                    "mood": `${mood}`,
-                })
+            const editedEntryObj = {
+                "date": `${date}`,
+                "concept": `${concept}`,
+                "entry": `${entry}`,
+                "mood": `${mood}`,
+            };
+            API.editJournalEntry(id, editedEntryObj)
                 .then(() => {
-                    renderDOM();
+                    renderDOM(true);
                     document.querySelector('#journal-form').reset();
-                });
+                })
+                .catch(backUpData(id, editedEntryObj));
         }
     });
 };
+
+let moodFilter = document.forms["mood-filter-form"].getElementsByTagName("input");
+
+for (let i = 0; i < moodFilter.length; i++) {
+    moodFilter[i].addEventListener("click", () => {
+        document.querySelector(".entryLog").innerHTML = "";
+        // const entryData = localStorage.getItem(`entry-data`);
+        const data = JSON.parse(localStorage.getItem(`entry-data`));
+        const filterBy = moodFilter[i].value;
+        const moodFiltered = data.filter(entry => {
+            if (entry.mood == filterBy) return entry;
+        });
+
+        let component = [];
+        composeDOM(moodFiltered);
+    });
+
+
+
+}
