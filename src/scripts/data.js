@@ -2,13 +2,13 @@
 const API = {
     // Read
     getJournalEntries() {
-        return fetch("http://localhost:8088/journalEntries")
+        return fetch("http://localhost:8044/journalEntries")
             .then(response => response.json());
             
     },
     // Create
     saveJournalEntry(entryObj) {
-        return fetch("http://localhost:8088/journalEntries", { // Replace "url" with your API's URL
+        return fetch("http://localhost:8044/journalEntries", { // Replace "url" with your API's URL
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -18,13 +18,13 @@ const API = {
     },
     // Delete
     deleteJournalEntry(id) {
-        return fetch(`http://localhost:8088/journalEntries/${id}`, { // Replace "url" with your API's URL
+        return fetch(`http://localhost:8044/journalEntries/${id}`, { // Replace "url" with your API's URL
             method: "DELETE"
         });
     },
     // Update
     editJournalEntry(id, entryObj) {
-        return fetch(`http://localhost:8088/journalEntries/${id}`, {
+        return fetch(`http://localhost:8044/journalEntries/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

@@ -108,6 +108,7 @@ const composeDOM = (entries) => {
         });
 
     });
+
     entriesDOM.renderJournalEntries(component);
 
 };
@@ -212,9 +213,46 @@ for (let i = 0; i < moodFilter.length; i++) {
         });
 
         let component = [];
+        console.log(moodFiltered);
         composeDOM(moodFiltered);
     });
 
 
 
 }
+
+
+
+document.getElementById("searchBox").addEventListener("keyup", (e) => {
+    if (e.keyCode == 13) {
+        const data = JSON.parse(sessionStorage.getItem(`entry-data`));
+        const searchKeyword = document.getElementById("searchBox").value;
+        let idCollection = [];
+        for (const prop in data) {
+            for (const value of Object.values(data[prop])) {
+                const valueStr = JSON.stringify(value).toLowerCase();
+                
+                if (typeof value != "number" && valueStr.includes(searchKeyword.toLowerCase())) {
+
+                    idCollection.push(data[prop].id);
+                }
+            }
+        }
+        idCollection = new Set(idCollection);
+        const searchFiltered = data.filter(entry => {
+            let equal = false;
+            idCollection.forEach((id) => {
+                if (entry.id == id) equal = true;
+            });
+
+            if (equal == true) return entry;
+
+        });
+
+console.log(searchFiltered);
+
+
+        composeDOM(searchFiltered);
+        // console.log(data);
+    }
+})

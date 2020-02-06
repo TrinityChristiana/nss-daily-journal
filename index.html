@@ -42,35 +42,43 @@
             <button id="editEntry" type="submit" class="toggle-button">Edit Journal Entry</button>
         </form>
     </section>
-    <section id="filter">
-        <form action="" name="mood-filter-form">
-            <section id="mood-filter-form">
-                <legend>Filter Entries by Mood</legend>
-                <div>
-                    <input type="radio" name="filter-mood" id="filter-happy" value="happy">
-                    <label for="filter-happy">Happy</label>
-                </div>
+    <div id="search-section">
+        <section id="filter">
+            <form action="" name="mood-filter-form">
+                <section id="mood-filter-form">
+                    <legend>Filter Entries by Mood</legend>
+                    <div>
+                        <input type="radio" name="filter-mood" id="filter-happy" value="happy">
+                        <label for="filter-happy">Happy</label>
+                    </div>
 
-                <div>
-                    <input type="radio" name="filter-mood" id="filter-fine" value="fine">
-                    <label for="filter-fine">Fine</label>
-                </div>
+                    <div>
+                        <input type="radio" name="filter-mood" id="filter-fine" value="fine">
+                        <label for="filter-fine">Fine</label>
+                    </div>
 
-                <div>
-                    <input type="radio" name="filter-mood" id="filter-sad" value="sad">
-                    <label for="filter-sad">Sad</label>
-                </div>
+                    <div>
+                        <input type="radio" name="filter-mood" id="filter-sad" value="sad">
+                        <label for="filter-sad">Sad</label>
+                    </div>
 
-                <div>
-                    <input type="radio" name="filter-mood" id="filter-angry" value="angry">
-                    <label for="filter-angry">Angry</label>
-                </div>
+                    <div>
+                        <input type="radio" name="filter-mood" id="filter-angry" value="angry">
+                        <label for="filter-angry">Angry</label>
+                    </div>
 
 
 
-            </section>
-        </form>
-    </section>
+                </section>
+            </form>
+        </section>
+        <section id="search-entries">
+            <label for="searchBox">Search Entries</label>
+            <input name="searchBox" type="text" id="searchBox">
+        </section>
+
+    </div>
+
     <article class="entryLog">
 
     </article>

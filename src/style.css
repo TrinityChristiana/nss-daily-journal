@@ -10,4 +10,24 @@ form section {
     width: 0px;
     padding: 0;
     margin: 0;
-};
+}
+
+#search-section{
+    display: flex;
+    width: 100%;
+}
+
+#filter, #searchBox {
+    width: 40%;
+
+}
+
+#mood-filter-form div{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#mood-filter-form{
+    width: 100%;
+}
