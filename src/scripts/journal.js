@@ -7,8 +7,10 @@ import validate from './validate.js'
 
 let clickedID;
 let backUpdateArray = JSON.parse(sessionStorage.getItem(`backupData`));
-// sessionStorage.removeItem(`entry-data`);
+sessionStorage.removeItem(`entry-data`);
 let entries = JSON.parse(sessionStorage.getItem(`entry-data`));
+
+entriesDOM.renderMoods();
 
 let eventHandler = (id) => {
     console.log(id);
@@ -33,7 +35,7 @@ let eventHandler = (id) => {
             "date": `${date}`,
             "concept": `${concept}`,
             "entry": `${entry}`,
-            "mood": `${mood}`,
+            "moodId": `${mood}`,
         };
         API.editJournalEntry(id, editedEntryObj)
             .then(() => {
@@ -53,6 +55,7 @@ const renderDOM = (hasUpdated, wasEdited) => {
         console.log(backUpdateArray);
         composeDOM(backUpdateArray);
     } else if (hasUpdated || entries == null) {
+
         API.getJournalEntries()
             .then(data => {
                 // Have it update jsonfile with backup data if ther eis some!!!
@@ -82,6 +85,8 @@ const renderDOM = (hasUpdated, wasEdited) => {
         composeDOM(entries);
         const editEntryButton = document.getElementById("editEntry");
         editEntryButton.addEventListener("click", () => {
+            console.log("clicked")
+            event.preventDefault();
 
             eventHandler(clickedID)
         });
@@ -102,9 +107,12 @@ const composeDOM = (entries) => {
         });
         editButton.addEventListener("click", (e) => {
             // Shows entry values in form to edit
-            entriesDOM.renderEntryInput(e);
-            entriesDOM.showEditEntryButton();
-            clickedID = event.target.parentNode.id;
+            entriesDOM.renderEntryInput(e)
+            .then(() => {
+
+                entriesDOM.showEditEntryButton();
+                clickedID = e.target.parentNode.id;
+            })
         });
 
     });
@@ -159,7 +167,7 @@ document.getElementById("submitEntry").addEventListener("click", (e) => {
         e.preventDefault();
     } else if (!formIsEmpty) {
         const newJournalEntry = convertEntryData.createEntryObject(inputArray);
-
+        console.log(newJournalEntry)
         e.preventDefault();
 
         API.saveJournalEntry(newJournalEntry) /* post */
@@ -209,7 +217,8 @@ for (let i = 0; i < moodFilter.length; i++) {
         const data = JSON.parse(sessionStorage.getItem(`entry-data`));
         const filterBy = moodFilter[i].value;
         const moodFiltered = data.filter(entry => {
-            if (entry.mood == filterBy) return entry;
+            console.log(entry)
+            if (entry.mood.label == filterBy) return entry;
         });
 
         let component = [];
@@ -256,3 +265,8 @@ console.log(searchFiltered);
         // console.log(data);
     }
 })
+
+
+
+// TODO: Make a collection of moods.
+

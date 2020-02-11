@@ -28,7 +28,7 @@ const convertInputData = {
         // creates p element for mood
         let mood = document.createElement('p');
         // Added mood from json file to created element
-        mood.textContent = `${journalEntry.mood}`;
+        mood.textContent = `${journalEntry.mood.label}`;
         mood.setAttribute("class", `moodText`);
 
         let deleteButton = document.createElement('button');
@@ -58,7 +58,7 @@ const convertInputData = {
             date: inputArray[0].value,
             concept: inputArray[1].value,
             entry: inputArray[2].value,
-            mood: inputArray[3].value
+            moodId: inputArray[3].value
         };
     }
 };

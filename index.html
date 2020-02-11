@@ -11,7 +11,7 @@
 
 <body>
     <section class="journal">
-        <form action="" id="journal-form">
+        <div id="journal-form">
             <section>
                 <label for="entry-date">Date of Entry</label>
                 <input type="date" name="entry-date" id="entry-date">
@@ -30,17 +30,13 @@
             <section>
                 <label for="mood-select">Select your mood</label>
                 <select name="mood-select" id="mood-select">
-                    <option value="">--Select Mood--</option>
-                    <option value="happy">Happy</option>
-                    <option value="fine">Fine</option>
-                    <option value="sad">Sad</option>
-                    <option value="angry">Angry</option>
+                    
                 </select>
             </section>
 
             <button id="submitEntry" type="submit">Record Journal Entry</button>
             <button id="editEntry" type="submit" class="toggle-button">Edit Journal Entry</button>
-        </form>
+        </div>
     </section>
     <div id="search-section">
         <section id="filter">

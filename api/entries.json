@@ -4,29 +4,61 @@
       "date": "2020-01-04",
       "concept": "number 14",
       "entry": "asdas",
-      "mood": "angry",
+      "moodId": 1,
       "id": 14
     },
     {
       "date": "2020-01-07",
       "concept": "111",
       "entry": "ZZfdsytf",
-      "mood": "sad",
+      "moodId": 2,
       "id": 15
     },
     {
       "date": "2020-01-04",
       "concept": "Concepts",
       "entry": "asdsdfdsf",
-      "mood": "happy",
+      "moodId": 3,
       "id": 16
     },
     {
       "date": "2020-01-31",
       "concept": "scope",
       "entry": "ths is the entry",
-      "mood": "angry",
+      "moodId": 1,
       "id": 17
+    },
+    {
+      "date": "2020-02-07",
+      "concept": "wew",
+      "entry": "qweq",
+      "moodId": 4,
+      "id": 18
+    },
+    {
+      "date": "2020-02-08",
+      "concept": "qds",
+      "entry": "qsdas",
+      "moodId": "3",
+      "id": 19
+    }
+  ],
+  "moods": [
+    {
+      "id": 1,
+      "label": "angry"
+    },
+    {
+      "id": 2,
+      "label": "sad"
+    },
+    {
+      "id": 3,
+      "label": "happy"
+    },
+    {
+      "id": 4,
+      "label": "fine"
     }
   ]
 }
