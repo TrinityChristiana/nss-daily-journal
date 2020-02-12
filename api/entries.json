@@ -1,24 +1,17 @@
 {
   "journalEntries": [
     {
-      "date": "2020-01-04",
-      "concept": "number 14",
-      "entry": "asdas",
-      "moodId": 1,
-      "id": 14
-    },
-    {
       "date": "2020-01-07",
       "concept": "111",
       "entry": "ZZfdsytf",
-      "moodId": 2,
+      "moodId": "1",
       "id": 15
     },
     {
       "date": "2020-01-04",
       "concept": "Concepts",
       "entry": "asdsdfdsf",
-      "moodId": 3,
+      "moodId": "2",
       "id": 16
     },
     {
@@ -27,13 +20,6 @@
       "entry": "ths is the entry",
       "moodId": 1,
       "id": 17
-    },
-    {
-      "date": "2020-02-07",
-      "concept": "wew",
-      "entry": "qweq",
-      "moodId": 4,
-      "id": 18
     },
     {
       "date": "2020-02-08",

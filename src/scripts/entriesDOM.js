@@ -8,6 +8,7 @@ import API from './data.js';
     Arguments: entries (array of objects)
 */
 
+
 const entriesDOM = {
 	renderJournalEntries(entries) {
 		// creates variable to hold first instance of an element with entryLog as a class
@@ -56,7 +57,6 @@ const entriesDOM = {
 	clearInput() {},
 	renderMoods() {
 		API.getMoods().then(data => {
-			console.log(data.id);
 			data.forEach(element => {
 				document.getElementById('mood-select').innerHTML += `
                 <option value="${element.id}">${element.label}</option>

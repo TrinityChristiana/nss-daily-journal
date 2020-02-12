@@ -2,7 +2,7 @@
 
 const convertInputData = {
     makeJournalEntryComponent (journalEntry) {
-        
+        console.log(journalEntry)
         // creates section element to hold journal entries
         let section = document.createElement('section');
         section.setAttribute("id", `${journalEntry.id}`);
@@ -49,7 +49,6 @@ const convertInputData = {
         section.appendChild(editButton);
 
         // Returns new created section and the children of the element
-        // console.log(section);
         
         return section;
     },
