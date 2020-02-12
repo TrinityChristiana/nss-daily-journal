@@ -8,7 +8,6 @@ import API from './data.js';
     Arguments: entries (array of objects)
 */
 
-
 const entriesDOM = {
 	renderJournalEntries(entries) {
 		// creates variable to hold first instance of an element with entryLog as a class
@@ -26,6 +25,7 @@ const entriesDOM = {
 			const entry = document.querySelector('#journal-entry');
 
 			const mood = document.querySelector('#mood-select');
+			const instructor = document.querySelector('#instructor-select');
 
 			date.value = currentSection.querySelector('.dateText').textContent;
 			concept.value = currentSection.querySelector(
@@ -35,11 +35,21 @@ const entriesDOM = {
 				'.entryText'
 			).textContent;
 
-			let moodLabel = currentSection.querySelector('.moodText').textContent;
+			let moodLabel = currentSection.querySelector('.moodText')
+				.textContent;
 			let moodObj = data.find(obj => {
 				return obj.label === moodLabel;
+            });
+            mood.value = moodObj.id;
+            
+			API.getInstructors().then(data => {
+				let instructorLabel = currentSection.querySelector('.instructorText')
+					.textContent;
+				let instructorObj = data.find(obj => {
+					return `${obj.firstName} ${obj.lastName}` === instructorLabel;
+                });
+				instructor.value = instructorObj.id;
 			});
-			mood.value = moodObj.id;
 		});
 	},
 	showEditEntryButton() {
@@ -60,6 +70,15 @@ const entriesDOM = {
 			data.forEach(element => {
 				document.getElementById('mood-select').innerHTML += `
                 <option value="${element.id}">${element.label}</option>
+                `;
+			});
+		});
+	},
+	renderInstructors() {
+		API.getInstructors().then(data => {
+            data.forEach(element => {
+				document.getElementById('instructor-select').innerHTML += `
+                <option value="${element.id}">${element.firstName} ${element.lastName}</option>
                 `;
 			});
 		});

@@ -3,13 +3,18 @@ const API = {
 	// Read
 	getJournalEntries() {
 		return fetch(
-			'http://localhost:8044/journalEntries?_expand=mood'
+			'http://localhost:8044/journalEntries?_expand=instructor&&_expand=mood'
 		).then(response => response.json());
 	},
 	getMoods() {
 		return fetch('http://localhost:8044/moods').then(response =>
 			response.json()
-		)
+		);
+	},
+	getInstructors() {
+		return fetch('http://localhost:8044/instructors').then(response =>
+			response.json()
+		);
 	},
 	// Create
 	saveJournalEntry(entryObj) {

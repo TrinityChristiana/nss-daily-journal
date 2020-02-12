@@ -1,19 +1,127 @@
 {
-  "posts": [
+  "journalEntries": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "date": "2020-01-04",
+      "concept": "Concepts",
+      "entry": "asdsdfdsf",
+      "moodId": "2",
+      "instructorId": "2",
+      "id": 16
+    },
+    {
+      "date": "2020-01-01",
+      "concept": "scopes",
+      "entry": "ths is the entrysaczxsx",
+      "moodId": "2",
+      "instructorId": "3",
+      "id": 17
+    },
+    {
+      "date": "2020-02-08",
+      "concept": "qds",
+      "entry": "qsdas",
+      "moodId": "3",
+      "instructorId": "3",
+      "id": 19
+    },
+    {
+      "date": "2020-01-07",
+      "concept": "111",
+      "entry": "ZZfdsytf",
+      "moodId": "1",
+      "instructorId": "1",
+      "id": 20
+    },
+    {
+      "date": "2020-01-07",
+      "concept": "111",
+      "entry": "ZZfdsytf",
+      "moodId": "1",
+      "instructorId": "1",
+      "id": 21
+    },
+    {
+      "date": "2020-01-07",
+      "concept": "111",
+      "entry": "ZZfdsytf",
+      "moodId": "1",
+      "instructorId": "2",
+      "id": 22
+    },
+    {
+      "date": "2020-02-06",
+      "concept": "number 14",
+      "entry": "dfxgchvjbhkjk.hgvn ",
+      "moodId": "1",
+      "instructorId": "2",
+      "id": 23
+    },
+    {
+      "date": "2020-02-11",
+      "concept": "qweassd",
+      "entry": "sxdcfgvhbj",
+      "moodId": "1",
+      "instructorId": "3",
+      "id": 24
+    },
+    {
+      "date": "2020-02-17",
+      "concept": "dxfcgvhbnm,",
+      "entry": "awfdaed",
+      "moodId": "3",
+      "instructorId": "3",
+      "id": 25
+    },
+    {
+      "date": "2020-02-05",
+      "concept": "asdas",
+      "entry": "asfdsf",
+      "moodId": "2",
+      "instructorId": "1",
+      "id": 26
+    },
+    {
+      "date": "2020-02-04",
+      "concept": "new journal",
+      "entry": "sredtfghvbjnk",
+      "moodId": "1",
+      "instructorId": "1",
+      "id": 27
     }
   ],
-  "comments": [
+  "moods": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "label": "angry"
+    },
+    {
+      "id": 2,
+      "label": "sad"
+    },
+    {
+      "id": 3,
+      "label": "happy"
+    },
+    {
+      "id": 4,
+      "label": "fine"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "instructors": [
+    {
+      "id": 1,
+      "firstName": "Kristen",
+      "lastName": "Norris"
+    },
+    {
+      "id": 2,
+      "firstName": "Andy",
+      "lastName": "Collins"
+    },
+    {
+      "id": 3,
+      "firstName": "Bryan",
+      "lastName": "Nilsen"
+    }
+  ]
 }

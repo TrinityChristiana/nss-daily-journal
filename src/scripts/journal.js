@@ -11,6 +11,7 @@ let backUpdateArray = null;
 let entries = JSON.parse(sessionStorage.getItem(`entry-data`));
 
 entriesDOM.renderMoods();
+entriesDOM.renderInstructors();
 
 let eventHandler = id => {
 	event.preventDefault();
@@ -22,7 +23,9 @@ let eventHandler = id => {
 	let date = document.querySelector('#entry-date').value;
 	let concept = document.querySelector('#concept-text').value;
 	let entry = document.querySelector('#journal-entry').value.trim();
-	let mood = document.querySelector('#mood-select').value;
+    let mood = document.querySelector('#mood-select').value;
+    let instructor = document.querySelector('#instructor-select').value;
+
 
 	if (formHasSpaces) {
 		alert('Please enter in all information');
@@ -33,7 +36,8 @@ let eventHandler = id => {
 			date: `${date}`,
 			concept: `${concept}`,
 			entry: `${entry}`,
-			moodId: `${mood}`
+            moodId: `${mood}`,
+            instructorId: `${instructor}`
 		};
 		API.editJournalEntry(id, editedEntryObj)
 			.then(() => {
@@ -41,7 +45,8 @@ let eventHandler = id => {
 				document.getElementById('entry-date').value = '';
 				document.getElementById('concept-text').value = '';
 				document.getElementById('journal-entry').value = '';
-				document.getElementById('mood-select').value = '';
+                document.getElementById('mood-select').value = '';
+                document.getElementById('instructor-select').value = '';
 			})
 			.catch(() => {
 				backUpData(Number(id), editedEntryObj);
@@ -119,13 +124,15 @@ const createCheckBooleans = () => {
 	const dateObj = collectInput.getInputValues('#entry-date', 'date');
 	const conceptObj = collectInput.getInputValues('#concept-text', 'concept');
 	const entryObj = collectInput.getInputValues('#journal-entry', 'entry');
-	const moodObj = collectInput.getInputValues('#mood-select', 'mood');
+    const moodObj = collectInput.getInputValues('#mood-select', 'mood');
+    const instructorObj = collectInput.getInputValues('#instructor-select', 'instructor');
 
 	// Pushes obj to array
 	inputArray.push(dateObj);
 	inputArray.push(conceptObj);
 	inputArray.push(entryObj);
-	inputArray.push(moodObj);
+    inputArray.push(moodObj);
+    inputArray.push(instructorObj);
 
 	// checks form to see if any fields are empty or filled with spaces
 

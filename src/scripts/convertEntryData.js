@@ -43,6 +43,18 @@ const convertInputData = {
 			});
 		}
 
+		let instructor = document.createElement('p');
+
+		API.getInstructors().then(data => {
+        
+			let instructorObj = data.find(obj => {
+				return obj.id === journalEntry.instructor.id;
+			});
+
+			instructor.textContent = `${instructorObj.firstName} ${instructorObj.lastName}`;
+			instructor.setAttribute('class', `instructorText`);
+		});
+
 		let deleteButton = document.createElement('button');
 		deleteButton.textContent = `Delete Entry`;
 		deleteButton.setAttribute('class', `deleteButton`);
@@ -56,6 +68,7 @@ const convertInputData = {
 		section.appendChild(date);
 		section.appendChild(entry);
 		section.appendChild(mood);
+		section.appendChild(instructor);
 		section.appendChild(deleteButton);
 		section.appendChild(editButton);
 
@@ -68,7 +81,8 @@ const convertInputData = {
 			date: inputArray[0].value,
 			concept: inputArray[1].value,
 			entry: inputArray[2].value,
-			moodId: inputArray[3].value
+			moodId: inputArray[3].value,
+			instructorId: inputArray[4].value
 		};
 	}
 };
