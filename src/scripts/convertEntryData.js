@@ -1,65 +1,76 @@
+import API from './data.js';
+
 // Move the code that is responsible for compiling the input data into different data types (obj, HTML component)
 
 const convertInputData = {
-    makeJournalEntryComponent (journalEntry) {
-        console.log(journalEntry)
-        // creates section element to hold journal entries
-        let section = document.createElement('section');
-        section.setAttribute("id", `${journalEntry.id}`);
-        
-        // created h2 element for the concept
-        let concept = document.createElement('h2');
-        // Added concept from json file to created element
-        concept.textContent = `${journalEntry.concept}`;
-        concept.setAttribute("class", `conceptText`);
+	makeJournalEntryComponent(journalEntry) {
+		// creates section element to hold journal entries
+		let section = document.createElement('section');
+		section.setAttribute('id', `${journalEntry.id}`);
 
-        // creates h3 element for the date
-        let date = document.createElement('h3');
-        // Added date from json file to created element
-        date.textContent = `${journalEntry.date}`;
-        date.setAttribute("class", `dateText`);
+		// created h2 element for the concept
+		let concept = document.createElement('h2');
+		// Added concept from json file to created element
+		concept.textContent = `${journalEntry.concept}`;
+		concept.setAttribute('class', `conceptText`);
 
-        // creates p elementfor the journal entry
-        let entry = document.createElement('p');
-        // Added entry from json file to created element
-        entry.textContent = `${journalEntry.entry}`;
-        entry.setAttribute("class", `entryText`);
+		// creates h3 element for the date
+		let date = document.createElement('h3');
+		// Added date from json file to created element
+		date.textContent = `${journalEntry.date}`;
+		date.setAttribute('class', `dateText`);
 
-        // creates p element for mood
-        let mood = document.createElement('p');
-        // Added mood from json file to created element
-        mood.textContent = `${journalEntry.mood.label}`;
-        mood.setAttribute("class", `moodText`);
+		// creates p elementfor the journal entry
+		let entry = document.createElement('p');
+		// Added entry from json file to created element
+		entry.textContent = `${journalEntry.entry}`;
+		entry.setAttribute('class', `entryText`);
 
-        let deleteButton = document.createElement('button');
-        deleteButton.textContent = `Delete Entry`;
-        deleteButton.setAttribute("class", `deleteButton`);
+		// creates p element for mood
+		let mood = document.createElement('p');
+		// Added mood from json file to created element
+		if (journalEntry.mood !== undefined) {
+			mood.textContent = `${journalEntry.mood.label}`;
+			mood.setAttribute('class', `moodText`);
+		} else {
+			API.getMoods().then(data => {
+				let moodObj = data.find(obj => {
+					return obj.id === Number(journalEntry.moodId);
+				});
 
+				mood.textContent = `${moodObj.label}`;
+				mood.setAttribute('class', `moodText`);
+			});
+		}
 
-        let editButton = document.createElement('button');
-        editButton.textContent = `Edit Entry`;
-        editButton.setAttribute("class", `editButton`);
+		let deleteButton = document.createElement('button');
+		deleteButton.textContent = `Delete Entry`;
+		deleteButton.setAttribute('class', `deleteButton`);
 
-        // Adds all elements and the text created above to the section element
-        section.appendChild(concept);
-        section.appendChild(date);
-        section.appendChild(entry);
-        section.appendChild(mood);
-        section.appendChild(deleteButton);
-        section.appendChild(editButton);
+		let editButton = document.createElement('button');
+		editButton.textContent = `Edit Entry`;
+		editButton.setAttribute('class', `editButton`);
 
-        // Returns new created section and the children of the element
-        
-        return section;
-    },
-    createEntryObject(inputArray) {
-        return {
-            date: inputArray[0].value,
-            concept: inputArray[1].value,
-            entry: inputArray[2].value,
-            moodId: inputArray[3].value
-        };
-    }
+		// Adds all elements and the text created above to the section element
+		section.appendChild(concept);
+		section.appendChild(date);
+		section.appendChild(entry);
+		section.appendChild(mood);
+		section.appendChild(deleteButton);
+		section.appendChild(editButton);
+
+		// Returns new created section and the children of the element
+
+		return section;
+	},
+	createEntryObject(inputArray) {
+		return {
+			date: inputArray[0].value,
+			concept: inputArray[1].value,
+			entry: inputArray[2].value,
+			moodId: inputArray[3].value
+		};
+	}
 };
 
 export default convertInputData;

@@ -13,7 +13,6 @@ const validate = {
             });
         });
         
-        // return checkForm;
 
         let formHasSpaces = checkForm.some(element => element.boolean === true);
         let formIsEmpty = checkForm.some(element => element.value === "");
