@@ -50,13 +50,23 @@ let eventHandler = id => {
 };
 
 const renderDOM = (hasUpdated, wasEdited) => {
-
 	API.getJournalEntries().then(data => {
-
 		entries = JSON.parse(sessionStorage.getItem(`entry-data`));
 		composeDOM(data);
-	});
 
+		for (let i = 0; i < moodFilter.length; i++) {
+			moodFilter[i].addEventListener('click', () => {
+				document.querySelector('.entryLog').innerHTML = '';
+				const filterBy = moodFilter[i].value;
+				const moodFiltered = data.filter(entry => {
+					if (entry.mood.label == filterBy) return entry;
+				});
+
+				let component = [];
+				composeDOM(moodFiltered);
+			});
+		}
+	});
 
 	const editEntryButton = document.getElementById('editEntry');
 
@@ -176,20 +186,6 @@ const backUpData = (id, editedEntryObj) => {
 let moodFilter = document.forms['mood-filter-form'].getElementsByTagName(
 	'input'
 );
-
-for (let i = 0; i < moodFilter.length; i++) {
-	moodFilter[i].addEventListener('click', () => {
-		document.querySelector('.entryLog').innerHTML = '';
-		const data = JSON.parse(sessionStorage.getItem(`entry-data`));
-		const filterBy = moodFilter[i].value;
-		const moodFiltered = data.filter(entry => {
-			if (entry.mood.label == filterBy) return entry;
-		});
-
-		let component = [];
-		composeDOM(moodFiltered);
-	});
-}
 
 document.getElementById('searchBox').addEventListener('keyup', e => {
 	if (e.keyCode == 13) {
